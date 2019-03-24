@@ -1,9 +1,10 @@
 import { LitElement, html } from 'lit-element';
+import './components/slider-element';
 
 class AppShell extends LitElement {
   render() {
     return html`
-      <h1>App Shell</h1>
+      <slider-element></slider-element>
     `;
   }
 }
