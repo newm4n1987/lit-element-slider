@@ -97,31 +97,31 @@ class SliderElement extends LitElement {
     `;
   }
   prev() {
-    this.imgElement.classList.add('prev');
+    this.imgElement.removeAttribute('class');
     setTimeout(() => {
-      if (this.index <= 0) {
-        this.index = 0;
-      } else {
-        this.index--;
-      }
+      this.imgElement.classList.add('prev');
       setTimeout(() => {
-        this.imgElement.removeAttribute('class');
-      }, 750)
-    }, 500);
+        if (this.index <= 0) {
+          this.index = 0;
+        } else {
+          this.index--;
+        }
+      }, 500);
+    }, 100);
   }
 
   next() {
-    this.imgElement.classList.add('next');
+    this.imgElement.removeAttribute('class');
     setTimeout(() => {
-      if (this.index == (this.items.length - 1)) {
-        this.index = this.items.length - 1;
-      } else {
-        this.index++;
-      }
+      this.imgElement.classList.add('next');
       setTimeout(() => {
-        this.imgElement.removeAttribute('class');
-      }, 750)
-    }, 500);
+        if (this.index == (this.items.length - 1)) {
+          this.index = this.items.length - 1;
+        } else {
+          this.index++;
+        }
+      }, 500);
+    }, 100);
   }
 
   printSlider() {
