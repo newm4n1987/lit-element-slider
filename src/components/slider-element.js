@@ -43,6 +43,28 @@ class SliderElement extends LitElement {
             opacity: 1;
         }
       }
+
+      .prev {
+        animation: prev 1.5s ease;
+      }
+
+      @keyframes prev {
+        0% {
+            transform: translateX(0);
+        }
+        25% {
+            transform: translateX(150px);
+            opacity: 0;
+        }
+        50% {
+            transform: translateX(-150px);
+            opacity: 0;
+        }
+        70% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+      }
     `;
   }
 
@@ -75,11 +97,17 @@ class SliderElement extends LitElement {
     `;
   }
   prev() {
-    if (this.index <= 0) {
-      this.index = 0;
-    } else {
-      this.index--;
-    }
+    this.imgElement.classList.add('prev');
+    setTimeout(() => {
+      if (this.index <= 0) {
+        this.index = 0;
+      } else {
+        this.index--;
+      }
+      setTimeout(() => {
+        this.imgElement.removeAttribute('class');
+      }, 750)
+    }, 500);
   }
 
   next() {
