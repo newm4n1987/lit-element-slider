@@ -22,11 +22,11 @@ class SliderElement extends LitElement {
       }
 
       /* This is the animation code. */
-      .move {
-        animation: move 1.5s ease;
+      .next {
+        animation: next 1.5s ease;
       }
 
-      @keyframes move {
+      @keyframes next {
         0% {
             transform: translateX(0);
         }
@@ -68,8 +68,8 @@ class SliderElement extends LitElement {
       <section>
         ${this.printSlider()}
         <div class="action-btns">
-          <button class="prev" @click="${() => this.prev()}">PREV</button>
-          <button class="next" @click="${() => this.next()}">NEXT</button>
+          <button class="btn-prev" @click="${() => this.prev()}">PREV</button>
+          <button class="btn-next" @click="${() => this.next()}">NEXT</button>
         </div>
       </section>
     `;
@@ -83,23 +83,17 @@ class SliderElement extends LitElement {
   }
 
   next() {
-    this.animationMoveOut();
-
+    this.imgElement.classList.add('next');
     setTimeout(() => {
       if (this.index == (this.items.length - 1)) {
         this.index = this.items.length - 1;
       } else {
         this.index++;
       }
-    },500);
-  }
-
-  animationMoveOut() {
-    const img = this.shadowRoot.querySelector('img');
-    img.classList.add('move');
-    setTimeout(() => {
-      img.removeAttribute('class')
-    }, 1000);
+      setTimeout(() => {
+        this.imgElement.removeAttribute('class');
+      }, 750)
+    }, 500);
   }
 
   printSlider() {
@@ -108,6 +102,10 @@ class SliderElement extends LitElement {
         <img src="${this.items[this.index].image}" alt="${this.items[this.index].name}">
       </div>
     `;
+  }
+
+  get imgElement() {
+    return this.shadowRoot.querySelector('img');
   }
 
 }
